@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('@/public/fonts/firasans/FiraSans-Light.woff2'),
+    url('@/public/fonts/firasans/FiraSans-Light.woff');
+  font-display: swap;
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('@/public/fonts/firasans/FiraSans-Regular.woff2'),
+    url('@/public/fonts/firasans/FiraSans-Regular.woff');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('@/public/fonts/firasans/FiraSans-Medium.woff2'),
+    url('@/public/fonts/firasans/FiraSans-Medium.woff');
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('@/public/fonts/firasans/FiraSans-SemiBold.woff'),
+    url('@/public/fonts/firasans/FiraSans-SemiBold.woff2');
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('@/public/fonts/firasans/FiraSans-Bold.woff2'),
+    url('@/public/fonts/firasans/FiraSans-Bold.woff');
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('@/public/fonts/firasans/FiraSans-ExtraBold.woff2'),
+    url('@/public/fonts/firasans/FiraSans-ExtraBold.woff');
+  font-display: swap;
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Fira Sans';
+  src: url('@/public/fonts/firasans/FiraSans-Black.woff2'),
+    url('@/public/fonts/firasans/FiraSans-Black.woff');
+  font-display: swap;
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Rubik';
+  src: url('@/public/fonts/rubik/Rubik-Medium.woff2'),
+    url('@/public/fonts/rubik/Rubik-Medium.woff');
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+}

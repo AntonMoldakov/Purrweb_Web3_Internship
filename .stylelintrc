@@ -1,0 +1,21 @@
+{
+  "extends": ["stylelint-config-sass-guidelines", "stylelint-config-idiomatic-order", "stylelint-config-prettier"],
+  "plugins": ["stylelint-declaration-strict-value", "stylelint-media-use-custom-media", "stylelint-group-selectors"],
+  "rules": {
+    "selector-class-pattern": [
+      "^(?:(?:o|c|u|t|s|is|has|_|js|qa)-)?[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:__[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:--[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*)?(?:\\[.+\\])?$",
+      {
+        "message": "Class names should match the SUIT CSS naming convention"
+      }
+    ],
+    "order/properties-alphabetical-order": null,
+    "scale-unlimited/declaration-strict-value": [
+      ["/color$/", "z-index", "font-size", "line-height", "box-shadow", "fill", "stroke"],
+      {
+        "ignoreValues": ["inherit", "transparent"]
+      }
+    ],
+    "csstools/media-use-custom-media": true,
+    "plugin/stylelint-group-selectors": true
+  }
+}
