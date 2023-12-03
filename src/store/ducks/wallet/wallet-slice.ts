@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { MOCK_WALLETS } from '../../../mock/mock';
 import { WalletType } from '../../../types/types';
@@ -15,15 +15,19 @@ const walletsSlice = createSlice({
   name: 'sliceWallets',
   initialState,
   reducers: {
-    addWallet: () => {},
-    removeWallet: () => {},
+    addWallet: (state, { payload }: PayloadAction<WalletType>) => {
+      state.wallets.push(payload);
+    },
+    removeWallet: (state, { payload }: PayloadAction<string>) => {
+      state.wallets = state.wallets.filter((wallet) => wallet.id !== payload);
+    },
     clearState: (state) => {
       state.wallets = [];
     },
   },
 });
 
-export const networkActions = {
+export const walletsActions = {
   ...walletsSlice.actions,
 };
 

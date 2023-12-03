@@ -15,7 +15,7 @@ type ModalGenerateWalletType = {
 };
 
 export const ModalGenerateWallet = ({ isOpen, setIsOpen, generateWallet }: ModalGenerateWalletType) => {
-  const { handleSubmit, setValue, watch, register } = useForm<GenerateWalletForm>();
+  const { handleSubmit, setValue, watch, register, reset } = useForm<GenerateWalletForm>();
 
   const handleChange = (network: BlockchainUnit) => {
     setValue('blockchain', network);
@@ -24,6 +24,7 @@ export const ModalGenerateWallet = ({ isOpen, setIsOpen, generateWallet }: Modal
   const onSubmit = (data: GenerateWalletForm) => {
     generateWallet(data);
     setIsOpen(false);
+    reset();
   };
 
   return (
