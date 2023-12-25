@@ -20,7 +20,6 @@ export type WalletType = {
   id: string;
   name: string;
   balance: number;
-  priceUsd: string;
   blockchainUnit: BlockchainUnit;
   address: string;
   publicKey?: string;

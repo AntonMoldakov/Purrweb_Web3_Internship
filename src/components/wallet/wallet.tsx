@@ -1,21 +1,47 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import { Card, CardContent, IconButton, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { MOCK_TRANSACTIONS, MOCK_TRANSACTIONS_TOKEN } from '../../mock/mock';
+import { walletsActions } from '../../store/ducks/wallet/wallet-slice';
+import { useAppDispatch } from '../../store/use-app-dispatch';
 import { Token, WalletType } from '../../types/types';
+import { ButtonDefault } from '../../ui/buttons/button-default/button-default';
 import { SendModal } from '../send-modal/send-modal';
 import TokenList from '../token-list/token-list';
 import Transactions from '../transactions/transactions';
 
 const Wallet = ({ wallet, tokens }: WalletPropsType) => {
   const [isOpenSendModal, setIsOpenSendModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [priceInUSD, setPriceInUSD] = useState(0);
 
-  const onRemoveWallet = () => {};
+  const dispatch = useAppDispatch();
+
+  const onRemoveWallet = () => {
+    dispatch(walletsActions.removeWallet(wallet.id));
+  };
 
   const onSendTransaction = () => {};
+
+  const getPriceInUSD = async () => {
+    try {
+      setIsLoading(true);
+      const response = await (
+        await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd')
+      ).json();
+      setPriceInUSD(response.ethereum.usd as number);
+    } catch (error) {
+      console.error(error);
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    getPriceInUSD();
+  }, []);
 
   return (
     <Root>
@@ -31,7 +57,8 @@ const Wallet = ({ wallet, tokens }: WalletPropsType) => {
             </Typography>
 
             <Typography variant="body1" color="text.secondary" paragraph>
-              Price in USD: ${wallet.priceUsd}
+              <ButtonDefault title="Refetch" disabled={isLoading} onClick={getPriceInUSD} />
+              Price in USD: ${wallet.balance * priceInUSD}
             </Typography>
 
             <Typography variant="body1" color="text.secondary" paragraph>

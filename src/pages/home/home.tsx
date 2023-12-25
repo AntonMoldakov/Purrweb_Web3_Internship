@@ -6,17 +6,14 @@ import { NetworkSelect } from '../../components/network-select/network-select';
 import { WalletList } from '../../components/wallet-list/wallet-list';
 import { walletsSelectors } from '../../store/ducks/wallet/wallet-selectors';
 import { useAppSelector } from '../../store/use-app-selector';
-import { ImportWalletType } from '../../types/types';
 
 export const Home = () => {
   const wallets = useAppSelector(walletsSelectors.selectWallets);
 
-  const importWallet = (data: ImportWalletType) => prompt('data', JSON.stringify(data));
-
   return (
     <>
       <Root>
-        <ImportWallet importWallet={importWallet} />
+        <ImportWallet />
         <GenerateWallet />
         <NetworkSelect />
       </Root>

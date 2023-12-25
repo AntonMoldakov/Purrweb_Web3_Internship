@@ -2,16 +2,26 @@ import { Key } from '@mui/icons-material';
 import { FC, useState } from 'react';
 import styled from 'styled-components';
 
-import { ImportWalletType } from '../../types/types';
+import { Wallet } from '../../services/ethers';
+import { walletsActions } from '../../store/ducks/wallet/wallet-slice';
+import { useAppDispatch } from '../../store/use-app-dispatch';
+import { BlockchainUnit, ImportWalletType } from '../../types/types';
 import { ButtonDefault } from '../../ui/buttons/button-default/button-default';
 import { ModalImportWallet } from './ui/modal-import-wallet/modal-import-wallet';
 
-type ImportWalletProps = {
-  importWallet: (data: ImportWalletType) => void;
-};
-
-export const ImportWallet: FC<ImportWalletProps> = ({ importWallet }) => {
+export const ImportWallet: FC = () => {
+  const dispatch = useAppDispatch();
   const [isOpenModalImport, setIsOpenModalImport] = useState<boolean>(false);
+
+  const importWallet = async (data: ImportWalletType) => {
+    try {
+      const wallet = await new Wallet().getWallet(data.mnemonic, data.blockchainUnit || BlockchainUnit.ETH, data.name);
+
+      dispatch(walletsActions.addWallet(wallet));
+    } catch (error) {
+      alert(error as string);
+    }
+  };
 
   return (
     <Root>
